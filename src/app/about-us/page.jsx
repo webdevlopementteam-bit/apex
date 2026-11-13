@@ -69,7 +69,7 @@ export default function AboutPage() {
 
             <div>
               <Image
-                src="/about-img.jpeg"
+                src="/about.jpeg"
                 alt="Apex Technology"
                 width={700}
                 height={550}

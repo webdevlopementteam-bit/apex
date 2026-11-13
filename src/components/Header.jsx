@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, FileText } from "lucide-react";
 import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { useState } from "react";
 
@@ -164,7 +164,7 @@ export default function Header() {
 
             {/* Desktop Menu */}
 
-            <nav className="hidden lg:flex items-center gap-12">
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-10">
 
               {navLinks.map((item) => {
                 const isActive = isProductsActive(item);
@@ -213,6 +213,18 @@ export default function Header() {
               })}
 
             </nav>
+
+            {/* Catalogue (opens in new tab, no forced download) */}
+
+            <a
+              href="/catalogue.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:flex items-center gap-2 rounded-md bg-red-600 px-4 py-2 text-[14px] font-bold text-white transition hover:bg-red-700"
+            >
+              <FileText className="w-4 h-4" />
+              DOWNLOAD CATALOGUE
+            </a>
 
             {/* Mobile */}
 
@@ -271,6 +283,17 @@ export default function Header() {
                 )}
               </div>
             ))}
+
+            <a
+              href="/catalogue.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenu(false)}
+              className="mx-5 mt-5 flex items-center justify-center gap-2 rounded-md bg-red-600 px-4 py-3 font-bold text-white"
+            >
+              <FileText className="w-4 h-4" />
+              DOWNLOAD CATALOGUE
+            </a>
 
           </div>
         </div>

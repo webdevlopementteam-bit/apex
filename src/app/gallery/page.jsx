@@ -37,6 +37,18 @@ const galleryImages = [
   },
 ];
 
+const exhibitionImages = [
+  { year: "2026", count: 4 },
+  { year: "2025", count: 2 },
+  { year: "2022", count: 4 },
+].map(({ year, count }) => ({
+  year,
+  images: Array.from({ length: count }, (_, i) => ({
+    src: `/gallery/${year}/exhibition-${year}-${i + 1}.jpeg`,
+    alt: `Apex Technology exhibition ${year} image ${i + 1}`,
+  })),
+}));
+
 export const metadata = {
   title: "Gallery | Apex Technology",
   description:
@@ -103,6 +115,46 @@ export default function GalleryPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-gray-50 py-14">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="text-center">
+            <span className="text-sm font-semibold uppercase tracking-[3px] text-red-600">
+              Events
+            </span>
+            <h2 className="mt-3 text-3xl font-bold text-gray-900 md:text-4xl">
+              Exhibition Images
+            </h2>
+          </div>
+
+          {exhibitionImages.map((group) => (
+            <div key={group.year} className="mt-12">
+              <div className="flex items-center gap-4">
+                <h3 className="text-2xl font-bold text-gray-900">{group.year}</h3>
+                <span className="h-[2px] flex-1 bg-red-600/20" />
+              </div>
+
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {group.images.map((image) => (
+                  <div
+                    key={image.src}
+                    className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={520}
+                      height={380}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </>
